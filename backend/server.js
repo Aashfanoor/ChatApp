@@ -10,7 +10,7 @@ import connectToMongoDB from "./db/connectToMongoDB.js";
 
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3005;
 
 dotenv.config();
 
@@ -24,7 +24,7 @@ app.use("/api/users", userRoutes);
 // root route http://localhost:5000/
 //  res.send("Hello World!a");
 //});
-
+//start the server
 app.listen(PORT, () => {
     connectToMongoDB();
     console.log(`Server Running on port ${PORT}`);

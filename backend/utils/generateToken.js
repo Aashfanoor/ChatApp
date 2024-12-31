@@ -6,6 +6,8 @@ const generateTokenAndSetCookie = (userId, res) => {
 
     // Set the JWT as a cookie with security measures
     res.cookie('jwt', token, {
+
+        //maxAge: 30 * 1000,
         maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days in milliseconds
         httpOnly: true, // Prevent client-side JavaScript from accessing the cookie
         sameSite: 'strict', // Restrict cookie to same-site requests

@@ -18,8 +18,8 @@ export const signup = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
 
 
-        const boyProfilePic = "https://avatar.iran.liara.run/public/boy?username=${username}";
-        const girlProfilePic = "https://avatar.iran.liara.run/public/girl?username=${username}";
+        const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
+        const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
 
         const newUser = new User({
             fullName,
@@ -53,9 +53,11 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
+
         const { username, password } = req.body;
 
         const user = await User.findOne({ username });
+
 
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
 
@@ -64,6 +66,10 @@ export const login = async (req, res) => {
         }
 
         generateTokenAndSetCookie(user._id, res);
+        //const token = generateTokenAndSetCookie(user._id, res);
+        //console.log("Generated JWT token:", token);
+
+
 
         res.status(200).json({
             _id: user._id,
